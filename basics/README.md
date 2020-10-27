@@ -13,18 +13,16 @@ React uses next gen JavaScript in some of its syntax, so it is good to have an u
 ### `let` and `const`
 These two keywords replace the `var` keyword. 
 * `let` is used for variables that will change
-* `const` is used for variables that should never change
+* `const` is used for variables that should never change, or for reference type elements.
 
 ### Arrow Functions
-These always intimidated me, but they aren't so bad. 
-
 In old JS, you write a functions as `function myFunction() {...}`, but arrow functions simplify this. 
 
-With ES6, you can just write `const > myFunction = () => {...}`. Here, we are assigning a function value to a propery. The parenthesis `()` is the argument list. If there are no arguments, it must be written. If there is *only* one argument, the parenthesis cane be dropped. Similarly, if the function *only* returns a value, then the curly braces and keyword (`{return}`) can be dropped. 
+With ES6, you can just write `const myFunction = () => {...}`. Here, we are assigning a function value to a propery. The parenthesis `()` is the argument list. If there are no arguments, it must be written. If there is *only* one argument, the parenthesis can be dropped. Similarly, if the function *only* returns a value, then the curly braces and keyword (`{return}`) can be dropped. 
 
 So `const multiply = number => number * 2` takes one parameter (`number`) and returns that value multiplied by two. 
 
- Note that using arrow functions helps with the `this` keyword issues that would occur in the older syntax. 
+Note that using arrow functions helps with the `this` keyword issues that would occur in the older syntax. 
 
 ### Exporting and Importing Modules
 You can connect files exporting and importing them. This helps with organization. Let's say we have two files in which we are exporting
@@ -39,7 +37,7 @@ export const clean = () => {...};
 
 export const baseDate = 10;
 ```
-You can either export as `default`, meaning that you will get that object when you import from that file without specifying anything else. Or, you can export individual objects or functions. Then, when you want to use them
+You can either export as `default`, meaning that you will get that object when you import from that file without specifying anything else. Or, you can export individual objects or functions. Then, when you want to use them,
 ```
 import Person from './Person.js';    // Note: the name is up to you since by default the whole object is exported.
 import prs from './Person.js';       // The name is how you will refer to it in this file. 
@@ -85,8 +83,8 @@ We can destructure (*not* destruct or destroy) objects. In other words, we can e
 In array destructuring, we assign array elements to variables:
 ```
 [a,b] = ["Hello", "Bob"];
-console.log(a)  // Hello
-console.log(b) // Bob
+console.log(a)   // Hello
+console.log(b)   // Bob
 ```
 
 In object destructuring, we assign properties to other properties. Note that they are assigned by property name.
@@ -122,9 +120,6 @@ class myApp extends Component {
         );
     }
 }
-
-export default myApp;
-
 ```
 
 The second way is using functional components.
@@ -164,7 +159,7 @@ I definitevly don't have `props`, but React does! With `props`, you can set cont
 import Person from './Person.js';
 <Person name="Bob" age="23" />
 ```
-Then, in that component's JS file, we specify where this dynamic content should appear using `props`
+Then, in that component's JS file, we specify where this dynamic content should appear using `props`.
 ```
 const person = (props) =>{
     <p>I am {props.name} and am {props.age} years old.</p>
@@ -184,7 +179,7 @@ return(
 ### State
 State is managed from inside a component. Though you can use state in functional components using Hooks, the established way is using state with class-based components. The state is basically a property of that component. 
 
-#### Class-based component State with `setState()`
+#### Class-based Component State with `setState()`
 ```
 class App extends Component {
   state = {
@@ -238,8 +233,6 @@ Note than the `this` keyword is removed because it is no longer a class.
   });
 
   const switchNameHandler = () => {
-    //console.log("Click");
-    // DON'T DO THIS: this.state.persons[0].name = "Bobabillion"
     setPersonsState( {
       persons: [
         {name: "Bobabillion", age: 23},
@@ -280,7 +273,7 @@ For methods with arguments, we have use `.bind`.
 ```
 <button onClick={this.myHandler.bind(this, arg)} />
 ```
-Tw way binding is when you bind a child component's input to a prop and attach an event to it's parent via props. 
+Two way binding is when you bind a child component's input to a prop and attach an event to it's parent via props. 
 
 ### Styling with Stylesheets or Inline
 CSS that is writen in stylesheets is not scoped to that component. It is global. Remember to import your CSS file to your component JS file.

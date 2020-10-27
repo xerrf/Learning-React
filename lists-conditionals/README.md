@@ -25,15 +25,15 @@ Here, the conditional statement will render everything between `?` and `:` if it
 The recommended way to display conditional content is by writing JS, not JSX. We can write JS in the `render()` method but outside of the return statement. The JS  that is written returns JSX which is stored in a variable. 
 ```
 let persons = null;
-  if(this.state.showPersons) {
-    persons = (
-      <div>
-        <Person 
-          name={person.name}
-          age={person.age} />
-      </div>
-    );
-  }
+if(this.state.showPersons) {
+  persons = (
+    <div>
+      <Person 
+        name={person.name}
+        age={person.age} />
+    </div>
+  );
+}
 ```
 Then, in the `return()` function, can can reference this `persons` JSX object to render it:
 ```
@@ -49,7 +49,7 @@ return (
 ```
 
 ## Lists
-Use the JS array `map()` function to map elements from arrays into components (or whatever else you want). `map()` takes a function as an argument. This function can have two arguments itself. The first is a variable to that is used to refernce each element in the array. The second is a optional and is used to keep track of the index of the array as it is being iterated over. **Note** that when using two arguments, they must be wrapped in `()`.
+Use the JS array `map()` function to map elements from arrays into components (or whatever else you want). `map()` takes a function as an argument. This function can have two arguments itself. The first is a variable to that is used to refernce each element in the array. The second is optional and is used to keep track of the index of the array as it is being iterated over. **Note** that when using two arguments, they must be wrapped in `()`.
 ```
 this.state.persons.map( (person, index) => {
   return <Person
@@ -83,23 +83,23 @@ state = {
 And then we set the key with `{key=this.state.persons[index].id}` when we want to use it.
 
 ## Flexible lists
-We can assign event change component-specific data. Here, we are allowing the user to type in a name that will replace the current person's name. First, we pass the function we want to call to the child component using the `changed` props. Since the child calls this on input change (it is a textfield), we get the `event` object, which we pass to `nameChangeHandler()` along with `person.id`.
+We can assign events to change component-specific data. Here, we are allowing the user to type in a name that will replace the current person's name. First, we pass the function we want to call to the child component using the `changed` props. Since the child calls this on input change (it is a textfield), we get the `event` object, which we pass to `nameChangeHandler()` along with `person.id`.
 ```
 let persons = null;
-  if(this.state.showPersons) {
-    persons = (
-      <div>
-      {this.state.persons.map((person, index) => {
-        return <Person 
-          click={() => this.deletePersonHandler(index)}
-          name={person.name}
-          age={person.age}
-          key={person.id}
-          changed={(event) => this.nameChangeHandler(event, person.id)} />
-      })}
-      </div>
-    );
-  }
+if(this.state.showPersons) {
+  persons = (
+    <div>
+    {this.state.persons.map((person, index) => {
+      return <Person 
+        click={() => this.deletePersonHandler(index)}
+        name={person.name}
+        age={person.age}
+        key={person.id}
+        changed={(event) => this.nameChangeHandler(event, person.id)} />
+    })}
+    </div>
+  );
+}
 ```
 Then we have to define the function we are calling. They point here is to find which component is being updated by searching through the state `persons` object array and matching the `id`. Then we make a copy of the individual element we want to change and the state array before manipulating the former and updating the latter. 
 ```
