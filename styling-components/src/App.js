@@ -2,6 +2,7 @@ import React, {Component} from 'react'; // Class components
 //import React, {useState} from 'react';  // Functional components with Hooks
 import './App.css';
 import Person from'./Person/Person';
+import Radium from 'radium';
 
 // Class-based component
 
@@ -50,11 +51,15 @@ class App extends Component {
   render() {
 
     const style = {
-      backgroundColor: 'white',
+      backgroundColor: 'green',
       font: 'inherit',
       border: 'solid blue thin',
       padding: '8px',
-      cursor: 'pointer'
+      cursor: 'pointer',
+      ':hover': {
+        backgroundColor: 'lightgreen',
+        color: 'black'
+      }
     };
 
     let persons = null;
@@ -71,11 +76,27 @@ class App extends Component {
         })}
         </div>
       );
+      style.backgroundColor = 'red';
+      style[':hover'] = {
+        backgroundColor: 'salmon',
+        color: 'black'
+      }
     }
+
+    // Classes
+    const classes = [];
+    if(this.state.persons.length <= 2) {
+      classes.push('red');
+    }
+    if (this.state.persons.length <= 1) {
+      classes.push('bold');
+    }
+
 
     return (
       <div className="App">
         <h1>Hello, I am a React app</h1>
+        <p className={classes.join(' ')}>This is really working</p>
         <button 
         style={style}
         onClick={this.togglePersonHandler} >Show People</button>
@@ -85,4 +106,4 @@ class App extends Component {
   }
 }
 
-export default App;
+export default Radium(App);
