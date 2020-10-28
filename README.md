@@ -9,3 +9,7 @@ This is the hub repo for my notes on learning react. Each repo can be thought of
 [Rendering Elements](https://reactjs.org/docs/rendering-elements.html)\
 [Components & Props](https://reactjs.org/docs/components-and-props.html)\
 [Events](https://reactjs.org/docs/events.html)
+
+### Conditionals & Lists
+[Conditional Rendering](https://reactjs.org/docs/conditional-rendering.html)
+[Lists & Keys](https://reactjs.org/docs/lists-and-keys.html)
