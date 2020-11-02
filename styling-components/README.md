@@ -2,10 +2,10 @@
 Remeber that CSS stylesheets are globally scoped and inline-styles (using JS) are scoped to that component. However, you can't write pseudo-style rules with inline JS.
 
 ## Quick links
-(Radium)[https://formidable.com/open-source/radium/]
-(Styled Components)[https://styled-components.com/]
-(CSS Modules Github)[https://github.com/css-modules/css-modules]
-(CSS Modules React)[https://create-react-app.dev/docs/adding-a-css-modules-stylesheet]
+[Radium](https://formidable.com/open-source/radium/)
+[Styled Components](https://styled-components.com/)
+[CSS Modules Github](https://github.com/css-modules/css-modules)
+[CSS Modules React](https://create-react-app.dev/docs/adding-a-css-modules-stylesheet)
 
 ## Dynamically changing styles
 With inline styles, we can just set object properties like in regular JS, meaning that they can be updated easily. 

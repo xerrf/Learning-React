@@ -13,3 +13,7 @@ This is the hub repo for my notes on learning react. Each repo can be thought of
 ### Conditionals & Lists
 [Conditional Rendering](https://reactjs.org/docs/conditional-rendering.html)
 [Lists & Keys](https://reactjs.org/docs/lists-and-keys.html)
+
+## Styling
+(CSS Modules Github)[https://github.com/css-modules/css-modules]
+(CSS Modules React)[https://create-react-app.dev/docs/adding-a-css-modules-stylesheet]
