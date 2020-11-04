@@ -7,6 +7,12 @@ import Cockpit from '../components/Cockpit/Cockpit';
 // Class-based component
 
 class App extends Component {
+
+  constructor(props) {
+    super(props);
+    console.log("[App.js] Constructor");
+  }
+
   state = {
     persons: [
       {id: '342', name: 'Bob', age: 23},
@@ -15,6 +21,24 @@ class App extends Component {
     ],
     otherState: "Other",
     showPersons: false
+  }
+
+  static getDerivedStateFromProps(props, state) {
+    console.log('[App.js] getDerivedState()', props);
+    return state;
+  }
+
+  componentDidMount() {
+    console.log('[App.js] componentDidMount()');
+  }
+
+  shouldComponentUpdate() {
+    console.log('[App.js] shouldComponentUpdate()');
+    return true;
+  }
+
+  componentDidUpdate() {
+    console.log('[App.js] componentDidUpdate()');
   }
 
   nameChangeHandler = (event, id) => {
