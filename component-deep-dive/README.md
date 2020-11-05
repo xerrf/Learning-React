@@ -41,7 +41,3 @@ The update lifecyle is as follows
     * Kind of rare to use.
 1. `componentDidUpdate()`
     * Can cause side-effect such as HTTP requests.
-
-
-
- 

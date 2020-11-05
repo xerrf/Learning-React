@@ -47,7 +47,7 @@ import {baseData} from './Utility.js'
 ```
 
 ### Classes 
-ES6 uses the `class` keyword to make a class, and inheritence is supported with the `extends` keyword. Properties are variables assigned to a class or object. Likewise, methods are functions attached to a class or object. Writing new JS means that we don't have to use constructores anymore. Functions can be assigned to properties. 
+ES6 uses the `class` keyword to make a class, and inheritence is supported with the `extends` keyword. Properties are variables assigned to a class or object. Likewise, methods are functions attached to a class or object. Writing new JS means that we don't have to use constructors anymore. Functions can be assigned to properties. 
 
 ```
 class Person extends Human {
@@ -83,15 +83,15 @@ We can destructure (*not* destruct or destroy) objects. In other words, we can e
 In array destructuring, we assign array elements to variables:
 ```
 [a,b] = ["Hello", "Bob"];
-console.log(a)   // Hello
-console.log(b)   // Bob
+console.log(a);  // Hello
+console.log(b);  // Bob
 ```
 
 In object destructuring, we assign properties to other properties. Note that they are assigned by property name.
 ```
-{name} = {name: "Bob", age = "23"}
-console.log(name)   // Bob
-console.log(age)    // undefined <- this is because only the named property is destructured
+{name} = {name: "Bob", age = "23"};
+console.log(name);   // Bob
+console.log(age);    // undefined <- this is because only the named property is destructured
 ```
 
 ### Primitive and Reference Types
@@ -102,7 +102,7 @@ Classes, Objects, and Arrays are reference types, meaning that their values are 
 const person = {name:"Bob"};
 const person2 = person;
 ```
-Then the pointer to `{name:"Bob"}` is copied to the `person2` object. To actually copy the object (or array), we can use the spread operator!
+Then the pointer to `{name:"Bob"}` is copied to the `person2` object. To actually copy the object (or array), we can use the spread operator! Note that we can use `const` when defining arrays and objects because the pointers to them will not change, but the elements or proprties can change.
 
 ## React Base Features and Syntax
 There is usually only one component that is rendered by the `ReactDOM.render()` function. This component can have nested components though. **A React component is basically a JS function that returns JSX.** It can be a class, but doesn't have to be. Remember to import the correct libraries! Components are meant to be reusable.
@@ -265,7 +265,7 @@ Components without `state` are known as stateless, dumb, or presentational compo
 ### Event Handling
 There are [a lot of events](https://reactjs.org/docs/events.html) to use in React. We can attach them to JSX elements by passing them as props:
 ```
-<button onClick={this.myHanlder} />
+<button onClick={this.myHandler} />
 ```
 Note that writing `onClick={myFunction()}` would excecute the function right away, so leave out the `()`.
 
