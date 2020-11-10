@@ -1,13 +1,29 @@
-import React from 'react';
+import React, {useEffect, useRef} from 'react';
 import styles from './Cockpit.module.css';
+import AuthContext from '../../Context/auth-context';
 
-const cockpit = (props) => {
+const Cockpit = (props) => {
+
+    const toggleButtonRef = useRef(null);
+
+    useEffect ( () => {
+        toggleButtonRef.current.click();
+        // console.log('[Cockpit.js] useEffect()');
+
+        // setTimeout(() => {
+        //     alert('Set data to cload.');
+        // }, 1000);
+        return () => {
+            console.log('[Cockpit.js] clean up in useEffect()');
+        }
+    }, []);
+
     // Classes
     const assignedClasses = [];
-    if(props.persons.length <= 2) {
+    if(props.personsLength <= 2) {
         assignedClasses.push(styles.red);
     }
-    if (props.persons.length <= 1) {
+    if (props.personsLength <= 1) {
         assignedClasses.push(styles.bold);
     }
 
@@ -21,11 +37,16 @@ const cockpit = (props) => {
             <h1>{props.title}</h1>
             <p className={assignedClasses.join(' ')}>This is really working</p>
             <button className={btnClass}
+            ref={toggleButtonRef}
             onClick={props.clicked}>
             Show People
             </button>
+            <AuthContext.Consumer>
+                {(context) => <button onClick={context.login}>Log In</button>}
+            </AuthContext.Consumer>
+            
         </div>
     );
 };
 
-export default cockpit;
+export default React.memo(Cockpit);

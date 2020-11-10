@@ -3,6 +3,8 @@ import React, {Component} from 'react'; // Class components
 import styles from './App.module.css'; 
 import Persons from '../components/Persons/Persons';
 import Cockpit from '../components/Cockpit/Cockpit';
+import WithClass from '../hoc/WithClass';
+import AuthContext from '../Context/auth-context';
 
 // Class-based component
 
@@ -20,12 +22,19 @@ class App extends Component {
       {id: 'qwiu', name: 'Stephanie', age: 22}
     ],
     otherState: "Other",
-    showPersons: false
+    showPersons: false,
+    showCockpit: true,
+    authenticated: false
   }
 
   static getDerivedStateFromProps(props, state) {
     console.log('[App.js] getDerivedState()', props);
     return state;
+  }
+
+  
+  componentWillUnmount() {
+    console.log('[App.js] componentWillUnmount()');
   }
 
   componentDidMount() {
@@ -72,26 +81,48 @@ class App extends Component {
     this.setState({persons: p});
   }
 
+  toggleCockpitHandler = () => {
+    const showCock = this.state.showCockpit;
+    this.setState({showCockpit: !showCock});
+  }
+
+  loginHandler = () => {
+    this.setState({authenticated: true});
+  }
+
   render() {
 
     let personsComp = null;
 
     if(this.state.showPersons) {
       personsComp = <Persons 
-          persons={this.state.persons}
-          clicked={this.deletePersonHandler}
-          changed={this.nameChangeHandler} />;    
+        persons={this.state.persons}
+        clicked={this.deletePersonHandler}
+        changed={this.nameChangeHandler} />;    
     }
 
+    let cockpitComp = null;
+    if(this.state.showCockpit) {
+      cockpitComp = (
+        <AuthContext.Provider value={{
+            authenticated: this.state.authenticated,
+            login: this.loginHandler
+          }}>
+          <Cockpit
+            title={this.props.appTitle}
+            showPersons={this.state.showPersons}
+            personsLength={this.state.persons.length}
+            clicked={this.togglePersonHandler} />
+        </AuthContext.Provider>)
+        
+    } else {cockpitComp = null;}
+
     return (
-      <div className={styles.App}>
-        <Cockpit
-          title={this.props.appTitle}
-          showPersons={this.state.showPersons}
-          persons={this.state.persons}
-          clicked={this.togglePersonHandler} />
+      <WithClass classes={styles.App}>
+        <button onClick={this.toggleCockpitHandler}>Toggle Cockpit</button>
+        {cockpitComp}
         {personsComp}
-      </div>
+      </WithClass>
     );
   }
 }

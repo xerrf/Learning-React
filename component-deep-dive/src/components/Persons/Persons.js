@@ -10,11 +10,16 @@ class Persons extends Component {
 
     shouldComponentUpdate(nextProps, nextState) {
         console.log('[Persons.js] shouldComponentUpdate()');
-        return true;
+        if (nextProps.persons !== this.props.persons) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     getSnapshotBeforeUpdate(prevProps, prevState) {
         console.log('[Persons.js] getSnapshotBeforeUpdate()');
+        return null;
     }
 
     componentDidUpdate(prevProps, prevState, snapshot) {
@@ -29,7 +34,8 @@ class Persons extends Component {
                 name={person.name}
                 age={person.age}
                 key={person.id}
-                changed={(event) => this.props.changed(event, person.id)} />
+                changed={(event) => this.props.changed(event, person.id)}
+                isAuth={this.props.isAuthenticated} />
             );
         });
     }
