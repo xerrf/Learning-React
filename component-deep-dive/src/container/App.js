@@ -31,7 +31,6 @@ class App extends Component {
     console.log('[App.js] getDerivedState()', props);
     return state;
   }
-
   
   componentWillUnmount() {
     console.log('[App.js] componentWillUnmount()');
